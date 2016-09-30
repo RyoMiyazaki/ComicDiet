@@ -215,7 +215,7 @@ namespace ResChange
             switch (e.PropertyName)
             {
                 case "fileName":
-                    e.Column.Header = "名前";
+                    e.Column.Header = "Name";
                     e.Column.DisplayIndex = 0;
                     break;
                 default:
