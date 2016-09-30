@@ -1,0 +1,52 @@
+﻿<Window x:Class="ResChange.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ComicDiet"  Height="400" Width="525" ResizeMode="NoResize" Loaded="Window_Loaded"  Icon="Gakuseisean-Aire-Pictures.ico">
+    <Grid >
+        <TextBox x:Name="txtFileName" HorizontalAlignment="Left" Height="47" Margin="22,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="467" Visibility="Hidden"/>
+        <Button x:Name="btnChange" Content="Convert" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="188" Height="33" Click="btnChange_Click" Margin="23,313,0,0" IsDefault="True"/>
+        <ProgressBar x:Name="progBar" HorizontalAlignment="Left" Height="20" Margin="22,273,0,0" VerticalAlignment="Top" Width="467"/>
+        <Label Content="Drop Zip file." HorizontalAlignment="Left" Margin="23,1,0,0" VerticalAlignment="Top" Height="24" Width="149"/>
+        <DataGrid x:Name="MyGrid"
+                  HorizontalAlignment="left" 
+                  HorizontalContentAlignment="Stretch" 
+                    ColumnWidth="*"
+                  Margin="23,30,0,0"
+                  VerticalAlignment="Top"
+                  Height="229"
+                  Width="466" 
+                  AllowDrop="True"
+                  Drop="MyGrid_Drop"
+                  AutoGeneratingColumn="MyGrid_AutoGeneratingColumn"
+                  PreviewDragOver="Window_PreviewDragOver"
+                  IsReadOnly="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="False"
+                  CanUserResizeColumns="False"
+                  CanUserReorderColumns="False" SelectionMode="Single">
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="DataGridRowHeader">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding isWorked}" Value="1">
+                            <Setter Property="Background" Value="Yellow" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding isWorked}" Value="2">
+                            <Setter Property="Background" Value="LimeGreen" />
+                        </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <Setter Property="Background" Value="{x:Null}" />
+                            <Setter Property="BorderBrush" Value="{x:Null}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+        <Button x:Name="btnClearAll" Content="ClearAll" HorizontalAlignment="Left" Margin="414,8,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.027,0.684" IsCancel="True" Click="Button_Click"/>
+        <CheckBox x:Name="chkLowHQ" Content="Low Quality" HorizontalAlignment="Left" Margin="400,323,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
